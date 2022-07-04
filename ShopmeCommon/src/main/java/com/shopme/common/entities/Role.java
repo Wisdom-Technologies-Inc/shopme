@@ -1,6 +1,5 @@
 package com.shopme.common.entities;
 
-import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -95,7 +94,5 @@ public class Role {
 	public String toString() {
 		return this.name;
 	}
-
-	
 
 }
