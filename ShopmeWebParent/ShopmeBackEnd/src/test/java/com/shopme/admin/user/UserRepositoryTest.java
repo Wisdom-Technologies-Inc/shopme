@@ -90,8 +90,13 @@ public class UserRepositoryTest {
 	
 	@Test
 	public void testDeleteUser() {
-		
 		userRepository.deleteById(2);
-		
+	}
+	
+	@Test
+	public void testGetUserByEmail() {
+		String email = "tim@wisdomtech.com";
+		User user = userRepository.getUserByEmail(email);
+		assertThat(user != null).isTrue();
 	}
 }
