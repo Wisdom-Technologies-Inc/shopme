@@ -99,4 +99,27 @@ public class UserRepositoryTest {
 		User user = userRepository.getUserByEmail(email);
 		assertThat(user != null).isTrue();
 	}
+	
+	@Test
+	public void testCountById() {
+		Integer id = 1;
+		assertThat(userRepository.countById(id)).isGreaterThan(0);
+	}
+	
+	@Test
+	public void testDisableUer() {
+		int id = 20;
+		userRepository.updateEnabledStatus(id, false);
+	}
+	
+	@Test
+	public void testEnableUer() {
+		int id = 20;
+		userRepository.updateEnabledStatus(id, true);
+	}
+	
+	@Test
+	public void updateUserEnabled(Integer id, boolean eanbled) {
+		userRepository.updateEnabledStatus(id, eanbled);
+	}
 }

@@ -1,78 +1,71 @@
 <!DOCTYPE html>
 <html>
 <head xmlns:th="http://ww.thymeleaf.org">
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-	
-	<title>Users - Shopme Admin</title>
-	
-	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-	<link rel="stylesheet" type="text/css" th:href="@{/fontawesome/all.css}" >
-	<link rel="stylesheet" type="text/css" th:href="@{/style.css}" >
-	<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
-	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+<title>Users - Shopme Admin</title>
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/fontawesome/all.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script type="text/javascript"
+	th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </head>
 
 <body class="container-fluid">
 	<div>
-		<nav class="navbar navbar-expand-lg bg-dark navbar-dark" >
-			<a class="navbar-brand" th:href="@{/}">
-				<img alt="Logo" th:src="@{/images/logo.png}">
+		<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+			<a class="navbar-brand" th:href="@{/}"> <img alt="Logo"
+				th:src="@{/images/logo.png}">
 			</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNavbar">
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#topNavbar">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			
+
 			<div class="collapse navbar-collapse" id="topNavbar">
 				<ul class="navbar-nav">
-					<li class="nav-item">
-						<a class="nav-link" th:href="@{/users}">Users</a>
+					<li class="nav-item"><a class="nav-link" th:href="@{/users}">Users</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" th:href="@{/categories}">Categories</a>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/categories}">Categories</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/brands}">Brands</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" th:href="@{/brands}">Brands</a>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/products}">Products</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/customers}">Customers</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/shippings}">Shipping</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/orders}">Orders</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" th:href="@{/products}">Products</a>
+					<li class="nav-item"><a class="nav-link" th:href="@{/sales}">Sales
+							Sales</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/articles}">Articles</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/menus}">menus</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" th:href="@{/customers}">Customers</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" th:href="@{/shippings}">Shipping</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" th:href="@{/orders}">Orders</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" th:href="@{/sales}">Sales Sales</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" th:href="@{/articles}">Articles</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" th:href="@{/menus}">menus</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" th:href="@{/settings}">Settings</a>
-					</li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/settings}">Settings</a></li>
 				</ul>
 			</div>
 		</nav>
 	</div>
-	
+
 	<div>
 		<h2>Manage Users</h2>
 		<a th:href="@{users/new}">Create New User</a>
 	</div>
-	
+
 	<div th:if="${message != null}" class="alert alert-success text-center">
-		[[${message}]]
-	</div>
+		[[${message}]]</div>
 	<div>
-		<table class="table table-striped table-bordered table-hover table-responsive-xl">
+		<table
+			class="table table-striped table-bordered table-hover table-responsive-xl">
 			<thead class="thead-dark">
 				<tr>
 					<th>User ID</th>
@@ -94,21 +87,65 @@
 					<td>[[${user.lastName}]]</td>
 					<td>[[${user.roles}]]</td>
 					<td>
-						<a th:if="${user.enabled} == true" href="#" class="fas fa-check-circle fa-2x icon-green btn"></a>
-						<a th:unless="${user.enabled} == true" href="#" class="fas fa-check-circle fa-2x icon-dark btn"></a>
+						<a th:if="${user.enabled} == true" th:href="@{'/users/' + ${user.id} + '/enabled/false'}"
+							class="fas fa-check-circle fa-2x icon-green btn" title="Disable this user">
+						</a>
+						<a th:unless="${user.enabled} == true" th:href="@{'/users/' + ${user.id} + '/enabled/true'}"
+							class="fas fa-circle fa-2x icon-dark btn" title="Enable this user">
+						</a>
 					</td>
 					<td>
-						<a href="#" class="fas fa-edit fa-2x icon-green btn"></a> &nbsp; 
-						<a href="#" class="fas fa-trash fa-2x icon-dark btn"></a>
+						<a th:href="@{'/users/edit/' + ${user.id}}"
+							class="fas fa-edit fa-2x icon-green btn" title="Edit this user">
+						</a>
+						&nbsp;
+						<a th:href="@{'/users/delete/' + ${user.id}}"
+							class="fas fa-trash fa-2x icon-dark btn link-delete"
+							title="Delete this user" 
+							th:userId = "${user.id}">
+						</a>
 					</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
-	<div class="text-center">
-		<p>Shopme Control Panel - Copyright &copy; WisdomTech Inc.</p> 
+
+	<div class="modal text-center" id="confirmDelete">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="modalTitle">Delete Confirmation</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+
+				<div class="modal-body">
+					<span id="modalBody"></span>
+				</div>
+
+				<div class="modal-footer">
+					<a class="btn btn-success" href="" id="yesButton">Yes</a>
+					<button type="button" data-dismiss="modal" class="btn btn-danger">No</button>
+				</div>
+			</div>
+		</div>
 	</div>
-	
-	
+
+	<div class="text-center">
+		<p>Shopme Control Panel - Copyright &copy; WisdomTech Inc.</p>
+	</div>
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$(".link-delete").on("click", function(e){
+				e.preventDefault();
+				link = $(this);
+				//alert($(this).attr("href"));
+				userId = link.attr("userId");
+				$("#yesButton").attr("href", link.attr("href"))
+				$("#modalBody").text("Are you sure you want to Delete this user ID " + userId + "?");
+				$("#confirmDelete").modal();
+			});
+		});
+	</script>
 </body>
 </html>
