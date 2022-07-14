@@ -1,5 +1,6 @@
 package com.shopme.common.entities;
 
+import java.beans.Transient;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -128,4 +129,10 @@ public class User {
 				+ ", roles=" + roles + "]";
 	}
 
+	@Transient
+	public String getPhotosImagePath() {
+		if (id == null || photos == null) return "/images/default-image.jpeg";
+	
+		return "/user-photos/" + this.id + "/" + this.photos;
+	}
 }
