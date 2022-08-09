@@ -12,6 +12,9 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.annotation.Rollback;
 
 import com.shopme.common.entities.Role;
@@ -55,7 +58,7 @@ public class UserRepositoryTest {
 	
 	@Test
 	public void testListAllUsers() {
-		List<User> users = userRepository.findAll();
+		List<User> users = (List<User>) userRepository.findAll();
 		users.forEach(user -> System.out.println(user));
 	}
 	
@@ -121,5 +124,37 @@ public class UserRepositoryTest {
 	@Test
 	public void updateUserEnabled(Integer id, boolean eanbled) {
 		userRepository.updateEnabledStatus(id, eanbled);
+	}
+	
+	@Test
+	public void testListFirstPage() {
+		int pageNumber = 1;
+		int pageSize = 4;
+		
+		Pageable pageable = PageRequest.of(pageNumber, pageSize);
+		Page<User> page = userRepository.findAll(pageable);
+		
+		List<User> listUsers = page.getContent();
+		
+		listUsers.forEach(user -> System.out.println(user));
+		
+		assertThat(listUsers.size()).isEqualTo(pageSize);
+	}
+	
+	@Test
+	public void testSearchUser() {
+		String keyword = "gmail";
+		
+		int pageNumber = 0;
+		int pageSize = 4;
+		
+		Pageable pageable = PageRequest.of(pageNumber, pageSize);
+		Page<User> page = userRepository.findAll(keyword, pageable);
+		
+		List<User> listUsers = page.getContent();
+		
+		listUsers.forEach(user -> System.out.println(user));
+		
+		assertThat(listUsers.size()).isGreaterThan(0);
 	}
 }
