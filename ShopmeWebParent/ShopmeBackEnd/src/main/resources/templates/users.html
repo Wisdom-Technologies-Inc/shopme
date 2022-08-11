@@ -89,12 +89,12 @@
 			class="table table-striped table-bordered table-hover table-responsive-xl">
 			<thead class="thead-dark">
 				<tr>
-					<th class="hideable-column">
+					<th th:class="hideable-column">
 						<th th:replace="fragments :: column_link('id', 'User Id', 'tag')"/>
 					</th>
 
 					<th>Photo</th>
-					<th class="hideable-column">
+					<th th:class="hideable-column">
 						<th th:replace="fragments :: column_link('email', 'E-Mail', 'tag')"/>
 					</th>
 					<th th:replace="fragments :: column_link('firstName', 'First Name', 'none')"/>
@@ -106,7 +106,7 @@
 			</thead>
 			<tbody>
 				<tr th:each="user : ${listUsers}">
-					<td class="hideable-column">[[${user.id}]]</td>
+					<td>[[${user.id}]]</td>
 					<td><span th:if="${user.photos == null}"
 						class="fas fa-portrait fa-3x icon-silver"></span> <img
 						th:if="${user.photos != null}" th:src="@{${user.photosImagePath}}"
