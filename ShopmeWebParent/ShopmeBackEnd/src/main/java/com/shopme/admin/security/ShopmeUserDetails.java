@@ -1,6 +1,7 @@
 package com.shopme.admin.security;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.Transient;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import com.shopme.common.entities.Role;
@@ -58,5 +59,9 @@ public class ShopmeUserDetails implements UserDetails {
     @Override
     public boolean isEnabled() {
         return user.isEnabled();
+    }
+
+    public String getFullName(){
+        return user.getFullName();
     }
 }
