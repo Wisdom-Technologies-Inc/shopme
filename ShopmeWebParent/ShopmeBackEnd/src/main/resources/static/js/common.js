@@ -10,7 +10,7 @@ $(document).ready(function(){
 function customizeDropDownMenu(){
     $(".navbar .dropdown").hover(
         function(){
-            $(this).find('.dropdown-menu').first().stop(true, true).delay(250).slideDown();
+            $(this).find('.dropdown-menu').first().stop(true, true).delay(300).slideDown();
         },
         function(){
             $(this).find('.dropdown-menu').find().stop(true, true).delay(100).slideUp();
