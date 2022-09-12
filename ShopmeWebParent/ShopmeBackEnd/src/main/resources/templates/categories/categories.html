@@ -35,16 +35,14 @@
 			class="table table-striped table-bordered table-hover table-responsive-xl">
 			<thead class="thead-dark">
 				<tr>
-					<th>
-						<th th:replace="fragments :: column_link('id', 'ID', 'tag')"/>
-					</th>
-
+					<th>ID</th>
 					<th>Category Image</th>
 					<th>
-						<th th:replace="fragments :: column_link('name', 'Category Name', 'tag')"/>
+						<a class="text-white" th:href="@{'/categories?sortDir=' + ${reverseSortDir}}">Category Name</a>
+						<span th:class="${reverseSortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
 					</th>
-					<th th:replace="fragments :: column_link('alias', 'Alias', 'none')"/>
-					<th th:replace="fragments :: column_link('enabled', 'Enabled', 'none')"/>
+					<th>Alias</th>
+					<th>Enabled</th>
 					<th></th>
 				</tr>
 			</thead>
@@ -52,7 +50,7 @@
 				<tr th:each="category : ${listCategories}">
 					<td>[[${category.id}]]</td>
 					<td>
-						<img th:src="@{${category.imagePath}}">
+						<img th:src="@{${category.imagePath}}" width="70px">
 					</td>
 					<td>[[${category.name}]]</td>
 					<td>[[${category.alias}]]</td>

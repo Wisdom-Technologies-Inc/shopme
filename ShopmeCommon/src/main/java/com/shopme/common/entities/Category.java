@@ -80,6 +80,12 @@ public class Category {
         this.id = id;
     }
 
+    public Category(Integer id, String name, String alias) {
+        this.id = id;
+        this.name = name;
+        this.alias = alias;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -138,6 +144,7 @@ public class Category {
 
     @Transient
     public String getImagePath(){
+        if (this.id == null) return "/images/img-thumbnail.png";
         return "category-images/" + this.id + "/" + this.image;
     }
 }

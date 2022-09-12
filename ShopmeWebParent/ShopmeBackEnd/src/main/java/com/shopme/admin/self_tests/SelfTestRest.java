@@ -17,13 +17,13 @@ public class SelfTestRest {
 
     @GetMapping("/self_test")
     public List<Category> getHierarchicalCategories(){
-        return categoryService.listAll();
+        return categoryService.listAll("asc");
     }
 
     @GetMapping("/self_test/names")
     public List<String> getHierarchicalCategoriesNames(){
         List<String> categoryNames = new ArrayList<>();
-        List<Category> categories = categoryService.listAll();
+        List<Category> categories = categoryService.listAll("asc");
         categories.forEach(cat -> categoryNames.add(cat.getName()));
         categoryNames.add(" ");
         return categoryNames;

@@ -80,6 +80,7 @@ public class UserController {
 		User user = new User();
 		user.setEnabled(true);
 		model.addAttribute("user", user);
+		model.addAttribute("pageTitle", "Create New User");
 		model.addAttribute("listRoles", listRoles);
 		return "users/user_form";
 	}
